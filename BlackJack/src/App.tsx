@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react'
 
 function App() {
   const [screen, setScreen] = useState(false)
-  const [baraja, setBaraja] = useState(null)
-  const [cartas, setCartas] = useState([])
+  const [baraja, setBaraja] = useState( { deck_id: "", remaining: 0 } )
+  const [cartas, setCartas] = useState([{}])
   const [points, setPoints] = useState(0)
+  let b = 0;
 
   useEffect(() => {
     fetch('https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6')
@@ -22,20 +23,24 @@ function App() {
         .then(data => {
           console.log("Carta robada:", data);
           setCartas(prevCartas => [...prevCartas, ...data.cards]);
-          
+
           const a = [...cartas, ...data.cards];
 
-          setPoints(a.reduce((acc, carta) => {
-          let valor = carta.value;
-          if (valor === 'JACK' || valor === 'QUEEN' || valor === 'KING') {
-            return acc + 10;
-          } else if (valor === 'ACE') {
-            return acc + 11; // Simplificación: siempre cuenta como 11
-          } else {
-            return acc + parseInt(valor);
+          if (b == 1) {
+            setPoints(a.reduce((acc, carta) => {
+            let valor = carta.value;
+            if (valor === 'JACK' || valor === 'QUEEN' || valor === 'KING') {
+              return acc + 10;
+            } else if (valor === 'ACE') {
+              return acc + 11; // Simplificación: siempre cuenta como 11
+            } else {
+              return acc + parseInt(valor);
+            }
+          }, 0))
           }
-        }, 0))
+
         })
+                  b = 1;
     }
   }
 
@@ -63,7 +68,7 @@ function App() {
                 ))}
               </div>
               <button onClick={() => {dealCard()}}>Hit</button>
-              <span>puntaje:{points}</span>
+              <span onChange={() => (console.log("a"))}>puntaje:{points}</span>
             </div>
             
           </div>
