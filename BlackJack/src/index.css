@@ -6,87 +6,44 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-
 }
 
-/* Contenedor principal */
+/* === RESETEO GENERAL === */
 body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  align-items: center; /* centra horizontalmente */
+  align-items: center;
 }
 
-/* Root del proyecto React */
+/* === ROOT DEL PROYECTO REACT === */
 #root {
   width: 100%;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  align-items: center; /* centrado horizontal */
+  align-items: center;
   text-align: center;
 }
 
-/* Enlaces */
+/* === ENLACES === */
 a {
   font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+  color: #d4af37;
+  text-decoration: none;
 }
 a:hover {
-  color: #535bf2;
+  color: #ffdf6c;
 }
 
-/* Títulos */
+/* === TÍTULOS === */
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
 
-/* Botones */
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-/* Banner del juego */
-.bannerstart {
-  width: 20%;
-  height: auto;
-  margin-top: 30px; /* distancia desde arriba */
-  margin-bottom: 20px;
-}
-
-/* Tema claro */
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
-/* Contenedor del juego */
+/* === CONTENEDOR PRINCIPAL === */
 .container {
   display: flex;
   flex-direction: column;
@@ -95,14 +52,14 @@ button:focus-visible {
   height: 100vh;
   font-size: 1.2rem;
   font-weight: bold;
-  color: black;
+  color: #fff;
 }
 
 /* === PANTALLA DE INICIO === */
 .pantalla-inicio {
   background-image: url('https://armchairarcade.com/perspectives/wp-content/uploads/2024/05/armchairarcade.com_image.jpg');
   background-size: cover;
-  background-position: center center; /* se ve el centro de la imagen */
+  background-position: center;
   background-repeat: no-repeat;
   width: 100%;
   height: 100%;
@@ -122,24 +79,18 @@ button:focus-visible {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 
-/* === CONTENIDO DE LA PANTALLA DE INICIO === */
-.inicio {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-
+/* === BANNER DEL INICIO === */
 .bannerstart {
   width: 20%;
   height: auto;
+  margin-top: 30px;
   margin-bottom: 20px;
 }
 
+/* === BOTÓN DE INICIO === */
 .btn-inicio {
   margin-top: 20px;
   padding: 12px 24px;
@@ -147,22 +98,155 @@ button:focus-visible {
   font-weight: bold;
   border: none;
   border-radius: 10px;
-  background-color: #646cff;
-  color: white;
+  background-color: #d4af37;
+  color: #000;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
 }
 
 .btn-inicio:hover {
-  background-color: #4c54d6;
+  background-color: #ffdf6c;
   transform: scale(1.05);
 }
 
-/* === CONTENIDO DEL JUEGO === */
-.juego {
+/* === ZONA DEL DEALER === */
+.dealer {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
+  padding-top: 30px;
+}
+
+.bannerdealer {
+  width: 200px;
+  margin-bottom: 15px;
+}
+
+.dealer .cards-dealer {
+  display: flex;
   justify-content: center;
-  height: 100vh;
+  gap: 10px;
+}
+
+/* === ZONA DEL JUGADOR === */
+.player {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 15px;
+  padding-bottom: 30px;
+}
+
+/* === CARTAS DEL JUGADOR === */
+.cards-player {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.card-image {
+  width: 100px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s ease;
+}
+
+.card-image:hover {
+  transform: translateY(-5px);
+}
+
+/* === BOTONES DE ACCIÓN === */
+.player-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+button {
+  background-color: #046307; /* verde casino */
+  color: #fff;
+  font-weight: bold;
+  border: 2px solid #d4af37; /* dorado */
+  border-radius: 8px;
+  padding: 10px 25px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+  margin: 5px;
+}
+
+button:hover {
+  background-color: #0b8a0f;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #ffd23f;
+}
+
+/* Botón especial (Stand) */
+button:nth-child(2) {
+  background-color: #8b0000; /* rojo burdeos */
+  border-color: #ffd23f;
+}
+button:nth-child(2):hover {
+  background-color: #a60000;
+}
+
+/* === PUNTAJE === */
+.player span {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 0 5px #000;
+}
+
+/* === RESPONSIVE DESIGN === */
+
+/* Tablets (pantallas medianas) */
+@media (max-width: 992px) {
+  .bannerdealer {
+    width: 150px;
+  }
+
+  .card-image {
+    width: 80px;
+  }
+
+  button {
+    padding: 8px 18px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Celulares (pantallas chicas) */
+@media (max-width: 600px) {
+  .bannerstart {
+    width: 60%;
+  }
+
+  .bannerdealer {
+    width: 120px;
+  }
+
+  .card-image {
+    width: 70px;
+  }
+
+  .player-buttons {
+    flex-direction: column; /* los botones se apilan verticalmente */
+    gap: 10px;
+  }
+
+  button {
+    width: 80%;
+    font-size: 1rem;
+  }
+
+  .player span {
+    font-size: 1rem;
+  }
 }
