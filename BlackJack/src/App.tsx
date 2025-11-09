@@ -1,10 +1,19 @@
 import { useEffect, useState } from 'react'
 
 function App() {
+  interface Carta {
+    image: string;
+  }
+
+  interface Baraja {
+    deck_id: string;
+    remaining: number;
+  }
+
   const [screen, setScreen] = useState(false)
-  const [baraja, setBaraja] = useState()
-  const [cartas, setCartas] = useState([])
-  const [cartasDealer, setCartasDealer] = useState([])
+  const [baraja, setBaraja] = useState<Baraja | null>(null);
+  const [cartas, setCartas] = useState<Carta[]>([]);
+  const [cartasDealer, setCartasDealer] = useState<Carta[]>([]);
   const [dealerPoints, setDealerPoints] = useState(0)
   const [botonDealer, setBotonDealer] = useState(false)
   const [points, setPoints] = useState(0)
@@ -44,7 +53,7 @@ if (creditos < 2000 && !puedeGanar) {
   }
 
   const sacarCartaDealer = () => {
-        fetch(`https://deckofcardsapi.com/api/deck/${baraja.deck_id}/draw/?count=1`)
+        fetch(`https://deckofcardsapi.com/api/deck/${baraja?.deck_id}/draw/?count=1`)
         .then(res => res.json())
         .then(data => {
           console.log("Carta robada:", data);
