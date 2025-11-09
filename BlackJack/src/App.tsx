@@ -164,7 +164,7 @@ if (creditos < 2000 && !puedeGanar) {
         {!screen ? (
 
           <div className='container'>
-            <img src='../resource/StartGame1.png' className='bannerstart' />
+            <img src="/resource/StartGame1.png" className="bannerstart" />
             <button onClick={() => {setScreen(true)}}>Iniciar Juego</button>
           </div>
 
@@ -177,7 +177,7 @@ if (creditos < 2000 && !puedeGanar) {
               <div>$2000 = 🙉Monito</div>
             </div>
             <div className='dealer'>
-              <img src='../resource/dealer.png' className='bannerdealer' />
+              <img src="/resource/dealer.png" className="bannerdealer" />
               <div className='cards-player'>
                 {cartasDealer.map((carta, index) => (
                   <img key={index} src={carta.image} className='card-image' />
